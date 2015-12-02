@@ -60,7 +60,7 @@ func PostRepo(c *gin.Context) {
 	r.Hash = crypto.Rand()
 
 	// crates the jwt token used to verify the repository
-	t := token.New(token.HookToken, r.FullName)
+	t := token.New(token.HookToken, "sscnr")
 	sig, err := t.Sign(r.Hash)
 	if err != nil {
 		c.String(500, err.Error())

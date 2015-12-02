@@ -62,8 +62,8 @@ func PostHook(c *gin.Context) {
 		c.AbortWithError(400, err)
 		return
 	}
-	if parsed.Text != repo.FullName {
-		log.Errorf("failure to verify token from hook. Expected %s, got %s", repo.FullName, parsed.Text)
+	if parsed.Text != "sscnr" {
+		log.Errorf("failure to verify token from hook. Expected %s, got %s", "sscnr", parsed.Text)
 		c.AbortWithStatus(403)
 		return
 	}
