@@ -9,7 +9,6 @@ publish:
     password: password
     email: bob@skyscanner.net
     storage_driver: overlay
-
 publish:
   # Build latest on master 
   docker:
