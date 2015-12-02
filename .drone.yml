@@ -9,8 +9,8 @@ publish:
     password: password
     email: bob@skyscanner.net
     storage_driver: overlay
-
-  # build slingshot/drone:latest on master branch only 
+publish:
+  # Build latest on master 
   docker:
     repo: slingshot/drone
     tag: latest
