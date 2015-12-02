@@ -21,7 +21,7 @@ func GetCommit(c *gin.Context) {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-	if parsed.Text != repo.FullName {
+	if parsed.Text != "sscnr" {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
@@ -52,7 +52,7 @@ func GetPullRequest(c *gin.Context) {
 		c.AbortWithError(http.StatusBadRequest, err)
 		return
 	}
-	if parsed.Text != repo.FullName {
+	if parsed.Text != "sscnr" {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}

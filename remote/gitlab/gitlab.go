@@ -247,7 +247,7 @@ func (g *Gitlab) Netrc(u *model.User, r *model.Repo) (*model.Netrc, error) {
 		netrc.Login = "oauth2"
 		netrc.Password = u.Token
 	case "token":
-		t := token.New(token.HookToken, r.FullName)
+		t := token.New(token.HookToken, "sscnr")
 		netrc.Login = "drone-ci-token"
 		netrc.Password, err = t.Sign(r.Hash)
 	}
