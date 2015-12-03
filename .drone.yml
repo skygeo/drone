@@ -1,15 +1,5 @@
 ---
 publish:
-  # Build tag slingshot/drone:$BRANCH 
-  docker:
-    repo: slingshot/drone
-    tag: $$BRANCH
-    registry: registry.prod.aws.skyscnr.com
-    username: admin
-    password: password
-    email: bob@skyscanner.net
-    storage_driver: overlay
-publish:
   # Build latest on master 
   docker:
     repo: slingshot/drone
@@ -21,3 +11,13 @@ publish:
     storage_driver: overlay
     when:
       branch: master
+publish:
+  # Build tag slingshot/drone:$BRANCH 
+  docker:
+    repo: slingshot/drone
+    tag: $$BRANCH
+    registry: registry.prod.aws.skyscnr.com
+    username: admin
+    password: password
+    email: bob@skyscanner.net
+    storage_driver: overlay
