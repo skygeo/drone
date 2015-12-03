@@ -20,5 +20,6 @@ This was forked from https://github.com/drone/drone.
 **Ho to update the cluster**
 1. SSH into the box
 2. re-run the cf-init script
-
-
+```
+/opt/aws/bin/cfn-init -v --stack slg-drone --resource DroneLaunchConfig --configsets InstallAndRun  --region eu-west-1
+```
