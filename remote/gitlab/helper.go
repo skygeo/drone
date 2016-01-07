@@ -18,12 +18,14 @@ func NewClient(url, accessToken string, skipVerify bool) *gogitlab.Gitlab {
 
 // IsRead is a helper function that returns true if the
 // user has Read-only access to the repository.
-func IsRead(proj *gogitlab.Project) bool {
+func IsRead(proj *gogitlab.Project, currentUser *gogitlab.User) bool {
 	var user = proj.Permissions.ProjectAccess
 	var group = proj.Permissions.GroupAccess
-
+	var owner = proj.Owner
 	switch {
 	case proj.Public:
+		return true
+	case owner != nil && owner.Id == currentUser.Id:
 		return true
 	case user != nil && user.AccessLevel >= 20:
 		return true
@@ -36,11 +38,14 @@ func IsRead(proj *gogitlab.Project) bool {
 
 // IsWrite is a helper function that returns true if the
 // user has Read-Write access to the repository.
-func IsWrite(proj *gogitlab.Project) bool {
+func IsWrite(proj *gogitlab.Project, currentUser *gogitlab.User) bool {
 	var user = proj.Permissions.ProjectAccess
 	var group = proj.Permissions.GroupAccess
+	var owner = proj.Owner
 
 	switch {
+	case owner != nil && owner.Id == currentUser.Id:
+		return true
 	case user != nil && user.AccessLevel >= 30:
 		return true
 	case group != nil && group.AccessLevel >= 30:
@@ -52,11 +57,14 @@ func IsWrite(proj *gogitlab.Project) bool {
 
 // IsAdmin is a helper function that returns true if the
 // user has Admin access to the repository.
-func IsAdmin(proj *gogitlab.Project) bool {
+func IsAdmin(proj *gogitlab.Project, currentUser *gogitlab.User) bool {
 	var user = proj.Permissions.ProjectAccess
 	var group = proj.Permissions.GroupAccess
+	var owner = proj.Owner
 
 	switch {
+	case owner != nil && owner.Id == currentUser.Id:
+		return true
 	case user != nil && user.AccessLevel >= 40:
 		return true
 	case group != nil && group.AccessLevel >= 40:

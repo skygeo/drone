@@ -198,10 +198,16 @@ func (g *Gitlab) Perm(u *model.User, owner, name string) (*model.Perm, error) {
 	if err != nil {
 		return nil, err
 	}
+	
+	currentUser, err := client.CurrentUser()
+	if err != nil {
+		return nil, err
+	}
+
 	m := &model.Perm{}
-	m.Admin = IsAdmin(repo)
-	m.Pull = IsRead(repo)
-	m.Push = IsWrite(repo)
+	m.Admin = IsAdmin(repo, &currentUser)
+	m.Pull = IsRead(repo, &currentUser)
+	m.Push = IsWrite(repo, &currentUser)
 	return m, nil
 }
 

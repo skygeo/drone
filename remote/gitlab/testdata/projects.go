@@ -48,7 +48,7 @@ var projectsPayload = []byte(`
 		"http_url_to_repo": "http://example.com/brightbox/puppet.git",
 		"web_url": "http://example.com/brightbox/puppet",
 		"owner": {
-			"id": 4,
+			"id": 1,
 			"name": "Brightbox",
 			"created_at": "2013-09-30T13:46:02Z"
 		},
@@ -135,7 +135,7 @@ var project6Paylod = []byte(`
 	"http_url_to_repo": "http://example.com/brightbox/puppet.git",
 	"web_url": "http://example.com/brightbox/puppet",
 	"owner": {
-	"id": 4,
+		"id": 1,
 		"name": "Brightbox",
 		"created_at": "2013-09-30T13:46:02Z"
 	},
@@ -160,14 +160,8 @@ var project6Paylod = []byte(`
 	},
 	"archived": false,
 	"permissions": {
-		"project_access": {
-			"access_level": 10,
-			"notification_level": 3
-		},
-		"group_access": {
-			"access_level": 50,
-			"notification_level": 3
-		}
+		"project_access": null,
+		"group_access": null
 	}
 }
 `)
