@@ -21,9 +21,6 @@ func NewServer() *httptest.Server {
 		case "/api/v3/projects/diaspora/diaspora-client":
 			w.Write(project4Paylod)
 			return
-		case "/api/v3/projects/brightbox/puppet":
-			w.Write(project6Paylod)
-			return
 		case "/api/v3/projects/diaspora/diaspora-client/services/drone-ci":
 			switch r.Method {
 			case "PUT":
@@ -41,7 +38,11 @@ func NewServer() *httptest.Server {
 			w.Write(accessTokenPayload)
 			return
 		case "/api/v3/user":
-			w.Write(currentUserPayload)
+			if r.Header.Get("Authorization") == "Bearer valid_token" {
+				w.Write(currentUserPayload)
+			} else {
+				w.WriteHeader(401)
+			}
 			return
 		}
 
